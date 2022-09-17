@@ -1,0 +1,14 @@
+package com.amefastforward.cardapi.repository;
+
+import com.amefastforward.cardapi.model.CardOrigin;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface CardOriginRepository {
+
+    CardOrigin save(CardOrigin cardOrigin);
+
+    Optional<CardOrigin> findById(long id);
+}

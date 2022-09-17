@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface CardRepository {
 
     Optional<Card> findById(long id);
+
+    Card save(Card card);
 }

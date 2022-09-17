@@ -24,6 +24,8 @@ public class Card {
 
     private LocalDateTime updateAt;
 
+    private CardOrigin origin;
+
     public long getId() {
         return id;
     }
@@ -102,6 +104,14 @@ public class Card {
 
     public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public CardOrigin getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(CardOrigin origin) {
+        this.origin = origin;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.amefastforward.cardapi.repository.impl;
 
+import com.amefastforward.cardapi.exception.InvalidEntityAttributeException;
 import com.amefastforward.cardapi.model.Card;
 import com.amefastforward.cardapi.repository.CardRepository;
 import org.springframework.stereotype.Repository;
@@ -11,46 +12,28 @@ import java.util.Optional;
 
 @Repository
 public class CardRepositoryImpl implements CardRepository {
-    private final List<Card> cards;
-
-    public CardRepositoryImpl() {
-        this.cards = new ArrayList<Card>();
-
-        var card = new Card();
-        card.setId(1);
-        card.setName("Iron Man");
-        card.setImageUrl("imgUrl");
-        card.setStrength(5);
-        card.setSpeed(5);
-        card.setGear(5);
-        card.setIntellect(8);
-        card.setSkill(6);
-        card.setCreatedAt(LocalDateTime.now());
-        card.setUpdateAt(LocalDateTime.now());
-
-        cards.add(card);
-
-        card = new Card();
-        card.setId(2);
-        card.setName("Spider Man");
-        card.setImageUrl("imgUrl");
-        card.setStrength(5);
-        card.setSpeed(7);
-        card.setGear(4);
-        card.setIntellect(7);
-        card.setSkill(6);
-        card.setCreatedAt(LocalDateTime.now());
-        card.setUpdateAt(LocalDateTime.now());
-
-        cards.add(card);
-
-
-    }
+    private final List<Card> cards = new ArrayList<Card>();
 
     @Override
     public Optional<Card> findById(long id) {
         return cards.stream()
                 .filter(card -> card.getId() == id)
                 .findFirst();
+    }
+
+    @Override
+    public Card save(Card card) {
+        var cardFound = cards.stream()
+                .filter(storedCard -> storedCard.getName() == card.getName())
+                .findFirst();
+
+        if(cardFound.isPresent()){
+            throw new InvalidEntityAttributeException("Card name [" + card.getName() + "] already stored");
+        }
+
+        card.setId(cards.size() + 1);
+        cards.add(card);
+
+        return card;
     }
 }
