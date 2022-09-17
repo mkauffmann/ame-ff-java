@@ -1,10 +1,6 @@
-package com.amefastforward.cardapi.model;
+package com.amefastforward.cardapi.controller.request;
 
-import java.time.LocalDateTime;
-
-public class Card {
-
-    private long id;
+public class CreateCardRequest {
 
     private String name;
 
@@ -22,19 +18,7 @@ public class Card {
 
     private int intellect;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updateAt;
-
-    private CardOrigin origin;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    private int originId;
 
     public String getName() {
         return name;
@@ -100,35 +84,18 @@ public class Card {
         this.intellect = intellect;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public int getOriginId() {
+        return originId;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdateAt() {
-        return updateAt;
-    }
-
-    public void setUpdateAt(LocalDateTime updateAt) {
-        this.updateAt = updateAt;
-    }
-
-    public CardOrigin getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(CardOrigin origin) {
-        this.origin = origin;
+    public void setOriginId(int originId) {
+        this.originId = originId;
     }
 
     @Override
     public String toString() {
-        return "Card{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "CreateCardRequest{" +
+                "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", strength=" + strength +
@@ -136,9 +103,7 @@ public class Card {
                 ", skill=" + skill +
                 ", gear=" + gear +
                 ", intellect=" + intellect +
-                ", createdAt=" + createdAt +
-                ", updateAt=" + updateAt +
-                ", origin=" + origin +
+                ", originId=" + originId +
                 '}';
     }
 }
