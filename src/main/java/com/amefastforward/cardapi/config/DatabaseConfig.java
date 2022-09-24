@@ -12,7 +12,7 @@ public class DatabaseConfig {
 
     private static final Logger LOG = LogManager.getLogger(DatabaseConfig.class);
 
-    @Value("${database.ur}")
+    @Value("${database.url}")
     private String url;
 
     @Value("${database.username}")
