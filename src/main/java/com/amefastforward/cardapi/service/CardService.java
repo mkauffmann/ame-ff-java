@@ -30,8 +30,8 @@ public class CardService {
     }
 
     public Card createCard(CreateCardRequest createCardRequest){
-        var cardOrigin = cardOriginRepository.findById(createCardRequest.getOriginId())
-                .orElseThrow(() -> new EntityNotFoundException("Card origin id [" + createCardRequest.getOriginId() + "] not found"));
+        //var cardOrigin = cardOriginRepository.findById(createCardRequest.getOriginId())
+        //        .orElseThrow(() -> new EntityNotFoundException("Card origin id [" + createCardRequest.getOriginId() + "] not found"));
         var card = new Card();
 
         card.setName(createCardRequest.getName());
@@ -42,7 +42,7 @@ public class CardService {
         card.setSkill(createCardRequest.getSkill());
         card.setIntellect(createCardRequest.getIntellect());
         card.setGear(createCardRequest.getGear());
-        card.setOrigin(cardOrigin);
+       // card.setOrigin(cardOrigin);
         card.setCreatedAt(LocalDateTime.now());
         card.setUpdateAt(LocalDateTime.now());
 

@@ -3,8 +3,16 @@ server:
   error:
     include-message: always
     include-exception: false
+spring:
+  h2:
+    console:
+      enabled: true
+      setting:
+        web-admin-password: example
+        web-allow-others: true
+
 
 database:
   url: jdbc:h2:file:./database/db_cards
-  username: root
-  password: root
+  username: sa
+  password: example
