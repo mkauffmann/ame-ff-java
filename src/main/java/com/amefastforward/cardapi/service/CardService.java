@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CardService {
@@ -43,6 +44,40 @@ public class CardService {
         card.setOrigin(cardOrigin);
         card.setCreatedAt(LocalDateTime.now());
         card.setUpdateAt(LocalDateTime.now());
+
+        return cardRepository.save(card);
+
+    }
+
+    public void delete(long id){
+        var card = this.findById(id);
+
+        cardRepository.delete(card);
+    }
+
+    public List<Card> listAll(){
+        return this.cardRepository.findAll();
+    }
+
+    public Card update(long id, CardRequest cardRequest){
+        var card = this.findById(id);
+
+        card.setName(cardRequest.getName());
+        card.setDescription(cardRequest.getDescription());
+        card.setImageUrl(cardRequest.getImageUrl());
+        card.setStrength(cardRequest.getStrength());
+        card.setSpeed(cardRequest.getSpeed());
+        card.setSkill(cardRequest.getSkill());
+        card.setIntellect(cardRequest.getIntellect());
+        card.setGear(cardRequest.getGear());
+        card.setUpdateAt(LocalDateTime.now());
+
+        if(card.getOrigin() == null || card.getOrigin().getId() != cardRequest.getOriginId()){
+            var origin = cardOriginRepository.findById(cardRequest.getOriginId())
+                    .orElseThrow(() -> new EntityNotFoundException("Card origin id [" + cardRequest.getOriginId() + "]"));
+
+            card.setOrigin(origin);
+        }
 
         return cardRepository.save(card);
 
