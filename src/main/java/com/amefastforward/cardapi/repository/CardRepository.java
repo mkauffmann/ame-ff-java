@@ -1,14 +1,12 @@
 package com.amefastforward.cardapi.repository;
 
 import com.amefastforward.cardapi.model.Card;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface CardRepository {
+public interface CardRepository extends JpaRepository<Card, Long> {
 
-    Optional<Card> findById(long id);
-
-    Card save(Card card);
 }

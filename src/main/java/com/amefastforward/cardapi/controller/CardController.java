@@ -1,6 +1,6 @@
 package com.amefastforward.cardapi.controller;
 
-import com.amefastforward.cardapi.controller.request.CreateCardRequest;
+import com.amefastforward.cardapi.controller.request.CardRequest;
 import com.amefastforward.cardapi.model.Card;
 import com.amefastforward.cardapi.service.CardService;
 import org.slf4j.Logger;
@@ -28,7 +28,7 @@ public class CardController {
     }
 
     @PostMapping
-    public Card createCard(@RequestBody CreateCardRequest createCardRequest){
-        return cardService.createCard(createCardRequest);
+    public Card createCard(@RequestBody CardRequest cardRequest){
+        return cardService.createCard(cardRequest);
     }
 }

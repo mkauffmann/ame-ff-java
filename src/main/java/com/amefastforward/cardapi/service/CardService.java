@@ -1,16 +1,14 @@
 package com.amefastforward.cardapi.service;
 
-import com.amefastforward.cardapi.controller.request.CreateCardRequest;
+import com.amefastforward.cardapi.controller.request.CardRequest;
 import com.amefastforward.cardapi.exception.EntityNotFoundException;
 import com.amefastforward.cardapi.model.Card;
-import com.amefastforward.cardapi.model.CardOrigin;
 import com.amefastforward.cardapi.repository.CardOriginRepository;
 import com.amefastforward.cardapi.repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class CardService {
@@ -29,20 +27,20 @@ public class CardService {
                 .orElseThrow(() -> new EntityNotFoundException("Card id [" + id + "] not found"));
     }
 
-    public Card createCard(CreateCardRequest createCardRequest){
-        //var cardOrigin = cardOriginRepository.findById(createCardRequest.getOriginId())
-        //        .orElseThrow(() -> new EntityNotFoundException("Card origin id [" + createCardRequest.getOriginId() + "] not found"));
+    public Card createCard(CardRequest cardRequest){
+        var cardOrigin = cardOriginRepository.findById(cardRequest.getOriginId())
+               .orElseThrow(() -> new EntityNotFoundException("Card origin id [" + cardRequest.getOriginId() + "] not found"));
         var card = new Card();
 
-        card.setName(createCardRequest.getName());
-        card.setDescription(createCardRequest.getDescription());
-        card.setImageUrl(createCardRequest.getImageUrl());
-        card.setStrength(createCardRequest.getStrength());
-        card.setSpeed(createCardRequest.getSpeed());
-        card.setSkill(createCardRequest.getSkill());
-        card.setIntellect(createCardRequest.getIntellect());
-        card.setGear(createCardRequest.getGear());
-       // card.setOrigin(cardOrigin);
+        card.setName(cardRequest.getName());
+        card.setDescription(cardRequest.getDescription());
+        card.setImageUrl(cardRequest.getImageUrl());
+        card.setStrength(cardRequest.getStrength());
+        card.setSpeed(cardRequest.getSpeed());
+        card.setSkill(cardRequest.getSkill());
+        card.setIntellect(cardRequest.getIntellect());
+        card.setGear(cardRequest.getGear());
+        card.setOrigin(cardOrigin);
         card.setCreatedAt(LocalDateTime.now());
         card.setUpdateAt(LocalDateTime.now());
 

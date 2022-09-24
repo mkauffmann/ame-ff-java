@@ -1,6 +1,6 @@
 package com.amefastforward.cardapi.controller.request;
 
-public class CreateCardOriginRequest {
+public class CardOriginRequest {
 
     private String name;
 
@@ -34,10 +34,10 @@ public class CreateCardOriginRequest {
 
     @Override
     public String toString() {
-        return "CreateCardOriginRequest{" +
+        return "CardOriginRequest{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", create='" + creator + '\'' +
+                ", creator='" + creator + '\'' +
                 '}';
     }
 }

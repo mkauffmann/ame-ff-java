@@ -1,9 +1,14 @@
 package com.amefastforward.cardapi.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "origin")
 public class CardOrigin {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;
